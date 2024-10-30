@@ -1,0 +1,29 @@
+.card {
+    border-color: #000;
+    background-color: rgb(165, 164, 164);
+    border-radius: 8px;
+}
+
+.img-thumbnail {
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+}
+
+.card-body {
+    padding: 0 25px;
+}
+
+.card-footer {
+    border-top: none;
+    padding: 0; /* Remove o padding da div */
+}
+
+.btn-group {
+    display: flex;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 0; /* Define um padding vertical, ajuste conforme necessário */
+}
