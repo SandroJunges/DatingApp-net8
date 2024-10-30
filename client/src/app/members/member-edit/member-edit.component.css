@@ -23,18 +23,8 @@
     display: flex;
 }
 
-.button1 {
-    flex: 1;
+.button {
     padding: 10px 0;
-    position: relative;
-    transition: flex 0.3s ease, z-index 0s;
-}
-
-.button2 {
-    flex: 1;
-    padding: 10px 0;
-    position: relative;
-    transition: flex 0.3s ease, z-index 0s;
 }
 
 .button1:hover {
@@ -49,4 +39,10 @@
 
 .card-img {
     padding: 1px;
+}
+
+.alerts {
+    padding-left: 7px;
+    background-color: #E95420;
+    border-radius: 6px;
 }
