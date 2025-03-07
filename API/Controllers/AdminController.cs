@@ -26,11 +26,11 @@ public class AdminController(UserManager<AppUser> userManager) : BaseApiControll
 
     [Authorize(Policy = "RequireAdminRole")]
     [HttpPost("edit-roles/{username}")]
-    public async Task<ActionResult> EditRoles(string username, string roles) 
+    public async Task<ActionResult> EditRoles(string username, [FromBody]List<string> roles) 
     {
-        if (string.IsNullOrEmpty(roles)) return BadRequest("you must select at least one role");
+        if (!roles.Any()) return BadRequest("you must select at least one role");
 
-        var selectedRoles = roles.Split(",").ToArray();
+        // var selectedRoles = roles.Split(",").ToArray();
 
         var user = await userManager.FindByNameAsync(username);
 
@@ -38,11 +38,11 @@ public class AdminController(UserManager<AppUser> userManager) : BaseApiControll
 
         var userRoles = await userManager.GetRolesAsync(user);
 
-        var result = await userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
+        var result = await userManager.AddToRolesAsync(user, roles.Except(userRoles));
         
         if(!result.Succeeded) return BadRequest("Failed to add to roles");
 
-        result = await userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
+        result = await userManager.RemoveFromRolesAsync(user, userRoles.Except(roles));
 
         if(!result.Succeeded) return BadRequest("Failed to remove from roles");
 
